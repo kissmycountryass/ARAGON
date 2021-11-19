@@ -36,15 +36,14 @@ def manager_init():
     ("CompletedTrainingVersion", "0"),
     ("HasAcceptedTerms", "0"),
     ("OpenpilotEnabledToggle", "1"),
+    ("DisableRadar_Allow", "1"),
+    ("DisableRadar", "1"), # WARNING: THIS DISABLES AEB
   ]
   if not PC:
     default_params.append(("LastUpdateTime", datetime.datetime.utcnow().isoformat().encode('utf8')))
 
   if params.get_bool("RecordFrontLock"):
     params.put_bool("RecordFront", True)
-
-  if not params.get_bool("DisableRadar_Allow"):
-    params.delete("DisableRadar")
 
   # set unset params
   for k, v in default_params:
